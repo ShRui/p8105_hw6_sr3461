@@ -9,7 +9,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 library(dplyr)
-library(rnoaa)
 library(tidyverse)
 library(readxl)
 library(janitor)
@@ -19,6 +18,8 @@ library(viridis)
 library(plotly)
 ```
 
+
+
 ```{r}
 #read and clean the data
 nynoaadat <- read_csv("./data/nynoaadat.csv.zip") %>%
@@ -27,19 +28,18 @@ nynoaadat <- read_csv("./data/nynoaadat.csv.zip") %>%
 ```
 
 ```{r}
-#make a scatter plot of mean of maximum temperature against minimum temperature for each month.
+#make a scatter plot of mean of maximum temperature against minimum temperature for each month
 nynoaadat_scatter <- nynoaadat%>% 
   filter(is.na(tmax) == FALSE, is.na(tmin) == FALSE) %>% 
   mutate(tmax1 = as.numeric(tmax)/10, tmin1 = as.numeric(tmin)/10) %>% 
   group_by(year, month) %>% 
-  summarise(mean_tmax = mean(tmax1, na.rm = TRUE),
-            mean_tmin = mean(tmin1, na.rm = TRUE)) %>% 
+  summarise(maximum_temperature = mean(tmax1, na.rm = TRUE),
+            minimum_temperature = mean(tmin1, na.rm = TRUE)) %>% 
   mutate(month_str = month.name[as.numeric(month)],
          text_label = str_c("Year: ",year,'; Month: ', month_str)) %>%
-  plot_ly(x = ~mean_tmin, y =  ~mean_tmax, type = "scatter", mode = "markers",
+  plot_ly(x = ~minimum_temperature, y =  ~maximum_temperature, type = "scatter", mode = "markers",
           alpha = 0.5, 
-          color = ~month,
-          text = ~text_label)
+          color = ~month_str)
 nynoaadat_scatter
 ```
 
@@ -50,9 +50,10 @@ nynoaadat_box <- nynoaadat %>%
   group_by(month) %>% 
   mutate(med_snow = median(snow, na.rm = TRUE)) %>% 
   ungroup(month) %>% 
-  mutate(month_str = month.name[as.numeric(month)],
+  mutate(month_str = month.abb[as.numeric(month)],
          month_str = fct_reorder(month_str, med_snow)) %>% 
-  plot_ly(y = ~snow, color = ~month_str, type = "box",
+  rename(snowfall = snow) %>% 
+  plot_ly(y = ~snowfall, color = ~month_str, type = "box",
           colors = "Set2")
 nynoaadat_box
 ```
@@ -62,9 +63,9 @@ nynoaadat_box
 nynoaadat_bar <- nynoaadat %>% 
    filter(snow > 0 & snow < 100) %>% 
    group_by(year) %>% 
-   summarize(snow_ave = round(mean(snow, na.rm = TRUE),3)) %>% 
-   mutate(text_label = str_c("Year: ",year,'; Average Snowfall: ',snow_ave)) %>% 
-   plot_ly(x = ~year, y = ~snow_ave, type = "bar",
+   summarize(average_snallfall = round(mean(snow, na.rm = TRUE),3)) %>% 
+   mutate(text_label = str_c("Year: ",year,'; Average Snowfall: ',average_snallfall)) %>% 
+   plot_ly(x = ~year, y = ~average_snallfall, type = "bar",
            color = ~year,
            text = ~text_label)
 nynoaadat_bar
