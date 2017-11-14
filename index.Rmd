@@ -1,7 +1,12 @@
 ---
-title: "Holy cow!"
+title: Homework 6 
 ---
+#### _Produced by Shengnan Sun (ss5428) and Shumin Rui (sr3461)_
 
-### I have a webpage!
+\  
+\  
+\  
 
-And I can put all kinds of stuff on it!
+### About the data  
+
+### Links to shiny and Github
