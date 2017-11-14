@@ -74,7 +74,6 @@ nynoaadat_scatter
 
 ```{r}
 #make a barplot of the average snowfall of each year
-#make a barplot of the average snowfall of each year
 nynoaadat_bar <- nynoaadat %>% 
    filter(snow > 0 & snow < 100) %>% 
    group_by(year) %>% 
