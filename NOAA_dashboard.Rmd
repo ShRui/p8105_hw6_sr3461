@@ -44,9 +44,10 @@ nynoaadat_box <- nynoaadat %>%
   ungroup(month) %>% 
   mutate(month_str = month.abb[month],
          month_str = fct_reorder(month_str, med_snow)) %>% 
-  rename(snowfall = snow) %>% 
-  plot_ly(y = ~snowfall, color = ~month_str, type = "box")
-nynoaadat_box
+  rename(snowfall = snow)
+nynoaadat_box_plotly = plot_ly(nynoaadat_box, y = ~snowfall, color = ~month_str, type = "box") %>% 
+    layout(yaxis = list(title = "Snowfall"))
+nynoaadat_box_plotly
 ```
 
 Column {data-width=350}
@@ -63,12 +64,14 @@ nynoaadat_scatter <- nynoaadat%>%
   summarise(maximum_temperature = mean(tmax1, na.rm = TRUE),
             minimum_temperature = mean(tmin1, na.rm = TRUE)) %>% 
   mutate(month_str = month.name[month],
-         text_label = str_c("Year: ",year,'; Month: ', month_str)) %>%
-  plot_ly(x = ~minimum_temperature, y =  ~maximum_temperature, type = "scatter", mode = "markers",
+         text_label = str_c("Year: ",year,'; Month: ', month_str))
+nynoaadat_scatter_plotly = plot_ly(nynoaadat_scatter, x = ~minimum_temperature, y =  ~maximum_temperature, type = "scatter", mode = "markers",
           alpha = 0.5, 
           color = ~month_str,
-          text = ~text_label)
-nynoaadat_scatter
+          text = ~text_label) %>% 
+       layout(xaxis = list(title = "Minimum temperature"),
+         yaxis = list(title = "Maximum temperature"))
+nynoaadat_scatter_plotly
 ```
 
 ### Barplot of average snowfall
@@ -79,10 +82,12 @@ nynoaadat_bar <- nynoaadat %>%
    filter(snow > 0 & snow < 100) %>% 
    group_by(year) %>% 
    summarize(average_snallfall = round(mean(snow, na.rm = TRUE),3)) %>% 
-   mutate(text_label = str_c("Year: ",year,'; Average Snowfall: ',average_snallfall)) %>% 
-   plot_ly(x = ~year, y = ~average_snallfall, type = "bar",
+   mutate(text_label = str_c("Year: ",year,'; Average Snowfall: ',average_snallfall))
+nynoaadat_bar_plotly = plot_ly(nynoaadat_bar, x = ~year, y = ~average_snallfall, type = "bar",
            color = ~year,
-           text = ~text_label)
-nynoaadat_bar
+           text = ~text_label) %>% 
+  layout(xaxis = list(title = "year"),
+    yaxis = list(title = "Average snowfall"))
+nynoaadat_bar_plotly
 ```
 
