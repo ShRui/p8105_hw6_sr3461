@@ -199,8 +199,8 @@ $(document).ready(function () {
 <h4><em>Produced by Shengnan Sun (ss5428) and Shumin Rui (sr3461)</em></h4>
 <p>     </p>
 </div>
-<div id="about-the-data" class="section level3">
-<h3>About the data</h3>
+<div id="about-the-data" class="section level4">
+<h4>About the data</h4>
 <p>The data for this homework was accessed from the NOAA National Climate Data Center, <a href="https://data.nodc.noaa.gov/cgi-bin/iso?id=gov.noaa.ncdc:C00861">Global Historical Climatory Network</a>.</p>
 <p>The dataset contains 2595176 observations and 9 variables:</p>
 <ul>
@@ -213,18 +213,21 @@ $(document).ready(function () {
 <li><p><code>tmin</code>: Minimum Temperature(tenths of degrees C).</p></li>
 </ul>
 <p>Reference: <a href="http://jeffgoldsmith.com/DSI/dataset_noaa.html" class="uri">http://jeffgoldsmith.com/DSI/dataset_noaa.html</a></p>
+</div>
 <div id="noaa_dashboard" class="section level4">
 <h4>NOAA_dashboard</h4>
 <ol style="list-style-type: decimal">
 <li>Box plot of snowfall amount distribution for each month, sequencing from the lowest median snowfall to the highest median snowfall.</li>
 </ol>
 <ul>
-<li>October has the largest median snowfall amount and August has the smallest median snowfall amount. August, September and June have relatively concentrated snowfall distribution.</li>
+<li><p>The analysis was limited to observations with snowfall values greater than 0 and less than 100.</p></li>
+<li><p>October has the largest median snowfall amount and August has the smallest median snowfall amount. August, September and June have relatively concentrated snowfall distribution.</p></li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
-<li>Scatter plot of average maximum temperature against average minimum temperature in each year</li>
+<li>Scatter plot of average maximum temperature against average minimum temperature in each month of each year</li>
 </ol>
 <ul>
+<li><p>Temperature (tmax and tmin) was converted from tenths of degrees C to degree C.</p></li>
 <li><p>Overall, there is a positive relationship between average maximum temperature and average minimum temperatrue.</p></li>
 <li><p>The dots for July cluster at the right-up corner, showing that July often have relatively high maximum temperature and minimum temperature.</p></li>
 <li><p>The dots for January and December cluster at the left-down corner, showing that these two months often have relatively low maximum temperature and minimum temperature.</p></li>
@@ -233,10 +236,19 @@ $(document).ready(function () {
 <li>Barplot of average snowfall of each year.</li>
 </ol>
 <ul>
-<li>From the barplot, we can see that the lowest snowfall amount appeared in 2006 with average snowfall of 27.77mm. The highest snowfall amount appeared in 1994 with average snowfall of 35.865mm.</li>
+<li><p>The analysis was limited to observations with snowfall values greater than 0 and less than 100.</p></li>
+<li><p>From the barplot, we can see that the lowest snowfall amount appeared in 2006 with average snowfall of 27.77mm. The highest snowfall amount appeared in 1994 with average snowfall of 35.865mm.</p></li>
 </ul>
 <p><br> <br></p>
 </div>
+<div id="noaa-shiny-flexdashboard" class="section level4">
+<h4>NOAA shiny flexdashboard</h4>
+<p>The shiny flexdashboard has been built on top of the NOAA_dashboard. A subset of NOAA data was used, since the original dataset was to large to be hosted on <a href="https://www.shinyapps.io/">shinyapps.io</a>. The unused variables, <code>prcp</code> and <code>snwd</code>, for this analysis were dropped. The rows contain NA entry in either <code>snow</code>, <code>tmax</code>, and <code>tmin</code> were dropped.</p>
+<ul>
+<li><p>The analysis can be done at each station level.</p></li>
+<li><p>The users can select the year range of data to be used to do analysis.</p></li>
+</ul>
+<p><br> <br></p>
 </div>
 <div id="links-to-shiny-and-github" class="section level3">
 <h3>Links to shiny and Github</h3>

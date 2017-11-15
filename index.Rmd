@@ -7,7 +7,7 @@ title: P8015 Homework 6
 \  
 \  
 
-### About the data  
+#### About the data  
 The data for this homework was accessed from the NOAA National Climate Data Center, [Global Historical Climatory Network](https://data.nodc.noaa.gov/cgi-bin/iso?id=gov.noaa.ncdc:C00861).
 
 The dataset contains 2595176 observations and 9 variables:
@@ -32,9 +32,13 @@ Reference: http://jeffgoldsmith.com/DSI/dataset_noaa.html
 
 1. Box plot of snowfall amount distribution for each month, sequencing from the lowest median snowfall to the highest median snowfall.
 
+* The analysis was limited to observations with snowfall values greater than 0 and less than 100.
+
 * October has the largest median snowfall amount and August has the smallest median snowfall amount. August, September and June have relatively concentrated snowfall distribution.
 
-2. Scatter plot of average maximum temperature against average minimum temperature in each year
+2. Scatter plot of average maximum temperature against average minimum temperature in each month of each year
+
+* Temperature (tmax and tmin) was converted from tenths of degrees C to degree C.
 
 * Overall, there is a positive relationship between average maximum temperature and average minimum temperatrue. 
 
@@ -44,7 +48,20 @@ Reference: http://jeffgoldsmith.com/DSI/dataset_noaa.html
 
 3. Barplot of average snowfall of each year.
 
+* The analysis was limited to observations with snowfall values greater than 0 and less than 100.
+
 * From the barplot, we can see that the lowest snowfall amount appeared in 2006 with average snowfall of 27.77mm. The highest snowfall amount appeared in 1994 with average snowfall of 35.865mm.
+
+<br>
+<br>
+
+#### NOAA shiny flexdashboard
+The shiny flexdashboard has been built on top of the NOAA_dashboard. A subset of NOAA data was used, since the original dataset was to large to be hosted on [shinyapps.io](https://www.shinyapps.io/). The unused variables, `prcp` and `snwd`, for this analysis were dropped. The rows contain NA entry in either `snow`, `tmax`, and `tmin` were dropped.
+
+* The analysis can be done at each station level.
+
+* The users can select the year range of data to be used to do analysis. 
+
 
 <br>
 <br>

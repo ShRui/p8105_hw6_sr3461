@@ -46,7 +46,7 @@ nynoaadat_box <- nynoaadat %>%
          month_str = fct_reorder(month_str, med_snow)) %>% 
   rename(snowfall = snow)
 nynoaadat_box_plotly = plot_ly(nynoaadat_box, y = ~snowfall, color = ~month_str, type = "box") %>% 
-    layout(yaxis = list(title = "Snowfall"))
+    layout(yaxis = list(title = "Snowfall(mm)"))
 nynoaadat_box_plotly
 ```
 
@@ -69,8 +69,8 @@ nynoaadat_scatter_plotly = plot_ly(nynoaadat_scatter, x = ~minimum_temperature, 
           alpha = 0.5, 
           color = ~month_str,
           text = ~text_label) %>% 
-       layout(xaxis = list(title = "Minimum temperature"),
-         yaxis = list(title = "Maximum temperature"))
+       layout(xaxis = list(title = "Minimum temperature(C)"),
+         yaxis = list(title = "Maximum temperature(C)"))
 nynoaadat_scatter_plotly
 ```
 
@@ -87,7 +87,7 @@ nynoaadat_bar_plotly = plot_ly(nynoaadat_bar, x = ~year, y = ~average_snallfall,
            color = ~year,
            text = ~text_label) %>% 
   layout(xaxis = list(title = ""),
-    yaxis = list(title = "Average snowfall"))
+    yaxis = list(title = "Average snowfall(mm)"))
 nynoaadat_bar_plotly
 ```
 
