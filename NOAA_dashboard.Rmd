@@ -23,9 +23,10 @@ library(plotly)
 
 ```{r}
 #read and clean the data
-nynoaadat <- read_csv("./data/nynoaadat.csv.zip") %>%
+nynoaadat <- read_csv("./data/nynoaadat.zip") %>%
   clean_names() %>% 
-  separate(.,date, into = c("year", "month", "day"), sep = "-")
+  separate(.,date, into = c("year", "month", "day"), sep = "-") %>%
+  mutate(month = as.numeric(month))
 ```
 
 
@@ -41,11 +42,10 @@ nynoaadat_box <- nynoaadat %>%
   group_by(month) %>% 
   mutate(med_snow = median(snow, na.rm = TRUE)) %>% 
   ungroup(month) %>% 
-  mutate(month_str = month.abb[as.numeric(month)],
+  mutate(month_str = month.abb[month],
          month_str = fct_reorder(month_str, med_snow)) %>% 
   rename(snowfall = snow) %>% 
-  plot_ly(y = ~snowfall, color = ~month_str, type = "box",
-          colors = "Set2")
+  plot_ly(y = ~snowfall, color = ~month_str, type = "box")
 nynoaadat_box
 ```
 
@@ -62,11 +62,12 @@ nynoaadat_scatter <- nynoaadat%>%
   group_by(year, month) %>% 
   summarise(maximum_temperature = mean(tmax1, na.rm = TRUE),
             minimum_temperature = mean(tmin1, na.rm = TRUE)) %>% 
-  mutate(month_str = month.name[as.numeric(month)],
+  mutate(month_str = month.name[month],
          text_label = str_c("Year: ",year,'; Month: ', month_str)) %>%
   plot_ly(x = ~minimum_temperature, y =  ~maximum_temperature, type = "scatter", mode = "markers",
           alpha = 0.5, 
-          color = ~month_str)
+          color = ~month_str,
+          text = ~text_label)
 nynoaadat_scatter
 ```
 
@@ -81,8 +82,7 @@ nynoaadat_bar <- nynoaadat %>%
    mutate(text_label = str_c("Year: ",year,'; Average Snowfall: ',average_snallfall)) %>% 
    plot_ly(x = ~year, y = ~average_snallfall, type = "bar",
            color = ~year,
-           text = ~text_label,
-           ylab = "average snowfall of each year")
+           text = ~text_label)
 nynoaadat_bar
 ```
 
