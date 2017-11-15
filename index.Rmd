@@ -8,5 +8,50 @@ title: P8015 Homework 6
 \  
 
 ### About the data  
-The data for this homework was accessed from the NOAA National Climate Data Center, titled ["Global Historical Climatory Network - Daily(GHCN-Daily), Version 3"](https://data.nodc.noaa.gov/cg from i-bin/iso?id=gov.noaa.ncdc:C00861)
-### Links to shiny and Github
+The data for this homework was accessed from the NOAA National Climate Data Center, [Global Historical Climatory Network](https://data.nodc.noaa.gov/cgi-bin/iso?id=gov.noaa.ncdc:C00861).
+
+The dataset contains 2595176 observations and 9 variables:
+
+* `id`: Weather station ID. The data in this dataset are from 747 weather stations.
+
+* `year`,`month` and `day`: describes the date of observations. The data are from 1981 to 2010.
+
+* `prcp`: Precipitation (tenths of mm).
+
+* `snow`: Snowfall(mm).
+
+* `snwd`: Snow Depth(mm).
+
+* `tmax`: Maximum Temperature(tenths of degrees C).
+
+* `tmin`: Minimum Temperature(tenths of degrees C).
+
+Reference: http://jeffgoldsmith.com/DSI/dataset_noaa.html
+
+#### NOAA_dashboard
+
+1. Box plot of snowfall amount distribution for each month, sequencing from the lowest median snowfall to the highest median snowfall.
+
+* October has the largest median snowfall amount and August has the smallest median snowfall amount. August, September and June have relatively concentrated snowfall distribution.
+
+2. Scatter plot of average maximum temperature against average minimum temperature in each year
+
+* Overall, there is a positive relationship between average maximum temperature and average minimum temperatrue. 
+
+* The dots for July cluster at the right-up corner, showing that July often have relatively high maximum temperature and minimum temperature. 
+
+* The dots for January and December cluster at the left-down corner, showing that these two months often have relatively low maximum temperature and minimum temperature.
+
+3. Barplot of average snowfall of each year.
+
+* From the barplot, we can see that the lowest snowfall amount appeared in 2006 with average snowfall of 27.77mm. The highest snowfall amount appeared in 1994 with average snowfall of 35.865mm.
+
+<br>
+<br>
+
+### Links to shiny and Github 
+The shiny flexdashboard can be found [here](https://shengnansun.shinyapps.io/p8105_hw6_ss5428/).
+
+The Github page for dashboard and this website is [here](https://github.com/ShRui/p8105_hw6_sr3461).
+
+The Github page for shiny dashboard is [here](https://github.com/shengnans1105/p8105_hw6_ss5428).

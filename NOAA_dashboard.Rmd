@@ -86,7 +86,7 @@ nynoaadat_bar <- nynoaadat %>%
 nynoaadat_bar_plotly = plot_ly(nynoaadat_bar, x = ~year, y = ~average_snallfall, type = "bar",
            color = ~year,
            text = ~text_label) %>% 
-  layout(xaxis = list(title = "year"),
+  layout(xaxis = list(title = ""),
     yaxis = list(title = "Average snowfall"))
 nynoaadat_bar_plotly
 ```
