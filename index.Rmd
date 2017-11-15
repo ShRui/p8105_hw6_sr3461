@@ -1,5 +1,5 @@
 ---
-title: Homework 6 
+title: P8015 Homework 6 
 ---
 #### _Produced by Shengnan Sun (ss5428) and Shumin Rui (sr3461)_
 
@@ -8,5 +8,5 @@ title: Homework 6
 \  
 
 ### About the data  
-
+The data for this homework was accessed from the NOAA National Climate Data Center, titled ["Global Historical Climatory Network - Daily(GHCN-Daily), Version 3"](https://data.nodc.noaa.gov/cg from i-bin/iso?id=gov.noaa.ncdc:C00861)
 ### Links to shiny and Github
